@@ -141,7 +141,7 @@ function App() {
 
             <Center mt={32}>
               <Button
-                onClick={() => { }}
+                onClick={() => { setEmailMe(true) }}
                 variant='outline'
                 size='xl'
                 radius={'md'}
@@ -377,8 +377,8 @@ function App() {
             <Transition transition="slide-up" mounted={scroll.y > 0}>
               {(transitionStyles) => (
                 <Button
-                variant='outline'
-                color='white'
+                  variant='outline'
+                  color='white'
                   style={transitionStyles}
                   onClick={() => scrollTo({ y: 0 })}
                 >
