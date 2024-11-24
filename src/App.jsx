@@ -50,7 +50,7 @@ const projects = [
     isDesktop: true,
     image: pawstit,
     type: "Academic",
-    technologies: ["react", "javascript", "node", "mongodb"]
+    technologies: ["react", "javascript", "firebase", "expo"]
   }
 ]
 
@@ -75,7 +75,7 @@ function App() {
           <Grid.Col span={{ base: 12, xs: 12, sm: 12, md: 6, lg: 5 }}>
             <Center>
               <Image
-                src={me1}
+                src={"https://placehold.co/400x400"}
                 radius={'lg'}
                 style={{
                   width: '400px',
