@@ -159,6 +159,58 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
                         filter: hoveredProject === index ? 'blur(4px)' : 'none',
                       }}
                     />
+                    {hoveredProject === index && project.technologies && (
+                      <Box
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '1rem',
+                          zIndex: 10,
+                        }}
+                      >
+                        {project.technologies.map((tech, idx) => {
+                          const iconSrc = getTechIcon(tech);
+                          return iconSrc ? (
+                            <Box
+                              key={idx}
+                              style={{
+                                width: '48px',
+                                height: '48px',
+                                backgroundColor: 'white',
+                                borderRadius: '50%',
+                                padding: '8px',
+                                transition: 'transform 0.3s ease',
+                                cursor: 'pointer',
+                                transform: 'scale(1)',
+                              }}
+                              onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'scale(1.1)';
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'scale(1)';
+                              }}
+                            >
+                              <img
+                                src={iconSrc}
+                                alt={tech}
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  objectFit: 'contain',
+                                }}
+                              />
+                            </Box>
+                          ) : null;
+                        })}
+                      </Box>
+                    )}
+
                   </a>
                 </Box>
               </Grid.Col>
