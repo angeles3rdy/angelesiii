@@ -14,7 +14,6 @@ import csh from "../../public/tech-icons/csharp.svg"
 import expo from "../../public/tech-icons/expo-color.svg"
 
 function Cards({ icon, title, text, text2, pills, projects, canView }) {
-
   const navigation = useNavigate();
   const [hoveredProject, setHoveredProject] = useState(null);
 
@@ -40,16 +39,16 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
         backgroundColor: 'transparent',
         border: '1px solid rgba(255, 255, 255, 0.1)',
         borderRadius: '16px',
-        padding: '40px',
+        padding: '20px', // Reduced padding for smaller screens
         transition: 'all 0.3s ease',
         backdropFilter: 'blur(10px)',
         boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
       }}
     >
       <Box>
-        <Group style={{ alignItems: 'center' }}>
+        <Group style={{ alignItems: 'center', flexWrap: 'wrap' }}>
           {icon && (
-            <Box style={{ marginBottom: '24px' }}>
+            <Box style={{ marginBottom: '16px' }}>
               {icon}
             </Box>
           )}
@@ -58,9 +57,12 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
             <>
               <Text
                 style={{
-                  fontSize: '32px',
+                  fontSize: '24px', // Smaller base font size
+                  '@media (min-width: 768px)': {
+                    fontSize: '32px'
+                  },
                   fontWeight: 'bold',
-                  marginBottom: '24px',
+                  marginBottom: '16px',
                   color: 'white',
                   fontFamily: 'Albert Sans',
                   letterSpacing: '0.5px',
@@ -71,7 +73,17 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
 
               {canView && (
                 <Group ml={'auto'}>
-                  <Button variant='subtle' color='white' onClick={() => navigation("/projects")}>
+                  <Button
+                    variant='subtle'
+                    color='white'
+                    onClick={() => navigation("/projects")}
+                    style={{
+                      fontSize: '14px', // Smaller base font size
+                      '@media (min-width: 768px)': {
+                        fontSize: '16px'
+                      }
+                    }}
+                  >
                     View All
                   </Button>
                 </Group>
@@ -83,7 +95,10 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
         {text && (
           <Text
             style={{
-              fontSize: '20px',
+              fontSize: '16px', // Smaller base font size
+              '@media (min-width: 768px)': {
+                fontSize: '20px'
+              },
               lineHeight: '1.6',
               fontWeight: 400,
               color: 'rgba(255, 255, 255, 0.9)',
@@ -97,8 +112,11 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
         {text2 && (
           <Text
             style={{
-              marginTop: '24px',
-              fontSize: '20px',
+              marginTop: '16px', // Reduced margin
+              fontSize: '16px', // Smaller base font size
+              '@media (min-width: 768px)': {
+                fontSize: '20px'
+              },
               lineHeight: '1.6',
               fontWeight: 400,
               color: 'rgba(255, 255, 255, 0.9)',
@@ -141,74 +159,51 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
                         filter: hoveredProject === index ? 'blur(4px)' : 'none',
                       }}
                     />
-
-                    {/* Tech stack overlay */}
-                    {hoveredProject === index && project.technologies && (
-                      <Box
-                        style={{
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '1rem',
-                          zIndex: 10,
-                        }}
-                      >
-                        {project.technologies.map((tech, idx) => {
-                          const iconSrc = getTechIcon(tech);
-                          return iconSrc ? (
-                            <Box
-                              key={idx}
-                              style={{
-                                width: '48px',
-                                height: '48px',
-                                backgroundColor: 'white',
-                                borderRadius: '50%',
-                                padding: '8px',
-                                transition: 'transform 0.3s ease',
-                                cursor: 'pointer',
-                                transform: 'scale(1)',
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = 'scale(1.1)';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'scale(1)';
-                              }}
-                            >
-                              <img
-                                src={iconSrc}
-                                alt={tech}
-                                style={{
-                                  width: '100%',
-                                  height: '100%',
-                                  objectFit: 'contain',
-                                }}
-                              />
-                            </Box>
-                          ) : null;
-                        })}
-                      </Box>
-                    )}
                   </a>
                 </Box>
               </Grid.Col>
 
               <Grid.Col span={{ base: 12, sm: 12, md: 12, lg: 6 }}>
-                <Text style={{ fontFamily: "Albert Sans", color: "white", fontSize: 34, fontWeight: 900 }}>
+                <Text
+                  style={{
+                    fontFamily: "Albert Sans",
+                    color: "white",
+                    fontSize: '24px', // Smaller base font size
+                    '@media (min-width: 768px)': {
+                      fontSize: '34px'
+                    },
+                    fontWeight: 900
+                  }}
+                >
                   {project.name}
                 </Text>
                 <Box>
-                  <Text style={{ marginBottom: 12, fontFamily: "Albert Sans", color: "white", fontWeight: 'bold' }}>
+                  <Text
+                    style={{
+                      marginBottom: 12,
+                      fontFamily: "Albert Sans",
+                      color: "white",
+                      fontWeight: 'bold',
+                      fontSize: '16px', // Smaller base font size
+                      '@media (min-width: 768px)': {
+                        fontSize: '18px'
+                      }
+                    }}
+                  >
                     Project Type: {project?.type}
                   </Text>
                   <Group>
                     <FaRegClock color='white' />
-                    <Text style={{ fontFamily: "Albert Sans", color: "white" }}>
+                    <Text
+                      style={{
+                        fontFamily: "Albert Sans",
+                        color: "white",
+                        fontSize: '14px', // Smaller base font size
+                        '@media (min-width: 768px)': {
+                          fontSize: '16px'
+                        }
+                      }}
+                    >
                       {project.duration}
                     </Text>
                   </Group>
@@ -221,54 +216,6 @@ function Cards({ icon, title, text, text2, pills, projects, canView }) {
             </Grid>
           ))
         )}
-
-        {/* {projects?.length > 0 && (
-          projects.map((project, index) => (
-            <Grid mb={12}>
-              <Grid.Col span={{ base: 12, sm: 12, md: 12, lg: 6 }}>
-                <a href={project?.url} target="_blank" rel="noopener noreferrer">
-                  <Image src={project.image}
-                    onClick={() => window.location.href}
-                    style={{ cursor: 'pointer' }}
-                    onMouseEnter={(e) => {
-                      e.target.style.transform = 'translateY(-2px)';
-                      e.target.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.transform = 'translateY(0)';
-                      e.target.style.boxShadow = '0 0 0 rgba(0, 0, 0, 0)';
-                    }}
-                    w={"100%"} />
-                </a>
-              </Grid.Col>
-
-              <Grid.Col span={{ base: 12, sm: 12, md: 12, lg: 6 }}>
-                <Text style={{ fontFamily: "Albert Sans", color: "white", fontSize: 34, fontWeight: 900 }}>{project.name}</Text>
-                <Box>
-                  <Text style={{ marginBottom: 12, fontFamily: "Albert Sans", color: "white", fontWeight: 'bold' }}>Project Type: {project?.type}</Text>
-
-                  <Group>
-                    <FaRegClock color='white' />
-                    <Text style={{ fontFamily: "Albert Sans", color: "white" }}>{project.duration}</Text>
-                  </Group>
-
-                  <Group mt={12}>
-
-                    {project.isMobile &&
-                      <FaMobileAlt size={24} color='white' />
-                    }
-
-                    {project.isDesktop &&
-                      <FaDesktop size={24} color='white' />
-                    }
-                  </Group>
-                </Box>
-
-
-              </Grid.Col>
-            </Grid>
-          ))
-        )} */}
       </Box>
     </Paper>
   );

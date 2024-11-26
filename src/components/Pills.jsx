@@ -6,14 +6,14 @@ function Pills({ icon, name }) {
     <Box
       style={{
         display: 'inline-flex',
-        margin: '6px',
+        margin: '4px', // Reduced margin for smaller screens
       }}
     >
       <Group
         style={{
           backgroundColor: 'rgba(115, 115, 115, 0.15)',
           backdropFilter: 'blur(8px)',
-          padding: '8px 16px',
+          padding: '6px 12px', // Reduced padding for smaller screens
           borderRadius: '20px',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           transition: 'all 0.3s ease',
@@ -29,7 +29,7 @@ function Pills({ icon, name }) {
           e.currentTarget.style.transform = 'translateY(0)';
           e.currentTarget.style.boxShadow = 'none';
         }}
-        spacing={8}
+        spacing={6} // Reduced spacing for smaller screens
       >
         <Box style={{
           display: 'flex',
@@ -39,13 +39,23 @@ function Pills({ icon, name }) {
         }}>
           <Image
             src={icon}
-            style={{ width: 32, height: 32 }}
+            style={{ 
+              width: 24, // Smaller base size
+              height: 24, 
+              '@media (min-width: 768px)': {
+                width: 32,
+                height: 32
+              }
+            }}
           />
         </Box>
         <Text
           style={{
             color: 'white',
-            fontSize: '16px',
+            fontSize: '14px', // Smaller base font size
+            '@media (min-width: 768px)': {
+              fontSize: '16px'
+            },
             fontWeight: 500,
             fontFamily: 'Albert Sans',
             letterSpacing: '0.5px',
@@ -54,8 +64,6 @@ function Pills({ icon, name }) {
         >
           {name}
         </Text>
-
-
       </Group>
     </Box>
   );
