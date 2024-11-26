@@ -7,7 +7,7 @@ const certificatesData = [
     id: 0,
     title: "Certificate of Achievement",
     issuer: "S2S Academy - Accenture",
-    date: "2025",
+    date: "2024",
     description: "Successfully completed the Skills to Succeed Academy program, showcasing dedication to enhancing job-seeking skills and career readiness",
   },
   {
