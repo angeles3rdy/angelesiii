@@ -1,5 +1,5 @@
 import { Affix, Anchor, Box, Button, Center, Divider, Grid, Group, Image, Paper, Stack, Text, Timeline, Transition } from '@mantine/core'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { IoMdMail, IoMdPerson, IoMdPin } from "react-icons/io";
 import Cards from './components/Cards';
 import { FaGears, FaLaptopCode } from 'react-icons/fa6';
@@ -18,7 +18,7 @@ import linkedin from "../public/tech-icons/linkedin.svg"
 import github from "../public/tech-icons/github.svg"
 import pawstit from "../public/prj_pawstit.jpg"
 import { FaBook } from 'react-icons/fa';
-import { IoSparkles } from 'react-icons/io5';
+import { IoCodeSlash, IoSparkles } from 'react-icons/io5';
 import Recog from './components/Recog';
 import { Carousel } from '@mantine/carousel';
 import '@mantine/carousel/styles.css';
@@ -28,6 +28,7 @@ import sittingme from "../public/me_sitting1.jpg";
 import { useNavigate } from 'react-router-dom';
 import EmailModal from './components/EmailModal';
 import { useWindowScroll } from '@mantine/hooks';
+import Certifications from './components/Certifications';
 
 const techStack = [
   { id: 2, name: "React & React Native", icon: react },
@@ -54,6 +55,99 @@ const projects = [
   }
 ]
 
+const BackgroundParticles = () => {
+  const [particles, setParticles] = useState([]);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas to full window size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Generate initial particles
+    const generateParticles = () => {
+      const particleCount = 100;
+      return Array.from({ length: particleCount }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 0.5,
+        speedX: (Math.random() - 0.5) * 0.5,
+        speedY: (Math.random() - 0.5) * 0.5,
+        color: `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`,
+        opacity: Math.random() * 0.3 + 0.1
+      }));
+    };
+
+    let animationParticles = generateParticles();
+
+    // Animate particles with more fluid movement
+    const animateParticles = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      animationParticles.forEach((particle, index) => {
+        // Add slight oscillation
+        particle.x += particle.speedX + Math.sin(particle.y * 0.01) * 0.2;
+        particle.y += particle.speedY + Math.cos(particle.x * 0.01) * 0.2;
+
+        // Wrap around screen edges
+        particle.x = (particle.x + canvas.width) % canvas.width;
+        particle.y = (particle.y + canvas.height) % canvas.height;
+
+        // Draw particle with subtle glow effect
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+
+        // Create radial gradient for glow effect
+        const gradient = ctx.createRadialGradient(
+          particle.x, particle.y, 0,
+          particle.x, particle.y, particle.radius * 3
+        );
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${particle.opacity})`);
+        gradient.addColorStop(1, 'transparent');
+
+        ctx.fillStyle = gradient;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animateParticles);
+    };
+
+    // Start animation
+    const animationFrame = requestAnimationFrame(animateParticles);
+
+    // Cleanup
+    return () => {
+      cancelAnimationFrame(animationFrame);
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: -1,
+        pointerEvents: 'none'
+      }}
+    />
+  );
+};
+
+
+
 function App() {
 
   const navigation = useNavigate();
@@ -66,6 +160,8 @@ function App() {
       minHeight: '100vh',
     }}>
 
+      <BackgroundParticles />
+
       <Box style={{
         maxWidth: '1200px',
         margin: '0 auto',
@@ -75,7 +171,7 @@ function App() {
           <Grid.Col span={{ base: 12, xs: 12, sm: 12, md: 6, lg: 5 }}>
             <Center>
               <Image
-                src={"https://placehold.co/400x400"}
+                src={me1}
                 radius={'lg'}
                 style={{
                   width: '400px',
@@ -200,10 +296,18 @@ function App() {
           <Grid
             ml={2}
             style={{
-              minHeight: '100%'
+              minHeight: '100%',
+              display: 'flex',
+              alignItems: 'stretch'
             }}
           >
-            <Grid.Col span={{ base: 12, sm: 6, md: 6, lg: 6 }}>
+            <Grid.Col
+              span={{ base: 12, sm: 6, md: 4, lg: 4 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column'
+              }}
+            >
               <Paper
                 style={{
                   backgroundColor: 'transparent',
@@ -213,7 +317,7 @@ function App() {
                   transition: 'all 0.3s ease',
                   backdropFilter: 'blur(10px)',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  height: '100%',
+                  flex: 1,
                   display: 'flex',
                   flexDirection: 'column'
                 }}
@@ -300,7 +404,50 @@ function App() {
               </Paper>
             </Grid.Col>
 
-            <Grid.Col span={{ base: 12, sm: 6, md: 6, lg: 6 }}>
+            <Grid.Col
+              span={{ base: 12, sm: 6, md: 8, lg: 8 }}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px' // Add space between stacked boxes
+              }}
+            >
+              <Paper
+                style={{
+                  backgroundColor: 'transparent',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  borderRadius: '16px',
+                  padding: '24px', // Reduced padding
+                  transition: 'all 0.3s ease',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
+                  flex: 0.3, // Reduced flex to make it smaller
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}
+              >
+                <Group>
+                  <Box style={{ marginBottom: '16px' }}>
+                    <IoSparkles color="white" size={20} />
+                  </Box>
+
+                  <Text
+                    style={{
+                      fontSize: '28px', // Slightly smaller title
+                      fontWeight: 'bold',
+                      marginBottom: '16px',
+                      color: 'white',
+                      fontFamily: 'Albert Sans',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    Certificates/Awards
+                  </Text>
+                </Group>
+
+                <Certifications height={300} /> {/* Reduced height prop */}
+              </Paper>
+
               <Paper
                 style={{
                   backgroundColor: 'transparent',
@@ -310,14 +457,14 @@ function App() {
                   transition: 'all 0.3s ease',
                   backdropFilter: 'blur(10px)',
                   boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-                  height: '100%',
+                  flex: 0.7, 
                   display: 'flex',
                   flexDirection: 'column'
                 }}
               >
                 <Group>
                   <Box style={{ marginBottom: '24px' }}>
-                    <IoSparkles color="white" size={20} />
+                    <IoCodeSlash color="white" size={20} />
                   </Box>
 
                   <Text
@@ -330,44 +477,138 @@ function App() {
                       letterSpacing: '0.5px',
                     }}
                   >
-                    Pending Section
+                    Other things
                   </Text>
                 </Group>
-
-                {/* <Carousel
-                  height={450}
-                  withIndicators
-                  slideSize="100%"
-                  slideGap="lg"
-                  loop
-                  align="start" withControls classNames={classes}>
-                  <Carousel.Slide>
-                    <Recog name={"Zeze Pastolero"} position={"Capstone Adviser & Professor, STI College Caloocan"} text={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"} />
-                  </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Recog name={"Zeze Pastolero"} position={"Capstone Adviser & Professor, STI College Caloocan"} text={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"} />
-                  </Carousel.Slide>
-                  <Carousel.Slide>
-                    <Recog name={"Zeze Pastolero"} position={"Capstone Adviser & Professor, STI College Caloocan"} text={"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"} />
-                  </Carousel.Slide>
-                </Carousel> */}
 
               </Paper>
             </Grid.Col>
           </Grid>
-          <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <Stack>
-              <Text style={{ textAlign: 'center', fontFamily: "Albert Sans", color: "white", fontSize: '20px', fontWeight: 'bold' }}>Socials</Text>
+          <Box
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginTop: '32px',
+              padding: '24px',
+              borderRadius: '16px',
+              border: '1px solid rgba(115, 115, 115, 0.3)',
+              // backgroundColor: 'rgba(115, 115, 115, 0.1)',
+              backdropFilter: 'blur(10px)',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.3s ease'
+            }}
+          >
+            <Stack align="center" gap="lg">
+              <Text
+                style={{
+                  textAlign: 'center',
+                  fontFamily: "Albert Sans",
+                  color: "white",
+                  fontSize: '24px',
+                  fontWeight: 'bold',
+                  letterSpacing: '1px',
+                  textShadow: '2px 2px 4px rgba(0,0,0,0.2)'
+                }}
+              >
+                Connect With Me
+              </Text>
 
-              <Group>
-                <Anchor href="https://www.facebook.com/terdiiiii/" target="_blank" rel="noopener noreferrer">
-                  <Image style={{ width: 45, height: 45, cursor: 'pointer' }} src={fb} />
+              <Group gap="xl">
+                <Anchor
+                  href="https://www.facebook.com/terdiiiii/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    borderRadius: '50%',
+                    padding: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                    e.currentTarget.style.boxShadow = '0 0 15px rgba(59, 89, 152, 0.5)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <Image
+                    style={{
+                      width: 55,
+                      height: 55,
+                      cursor: 'pointer',
+                      filter: 'brightness(0.9) contrast(1.2)'
+                    }}
+                    src={fb}
+                  />
                 </Anchor>
-                <Anchor href="https://github.com/angeles3rdy" target="_blank" rel="noopener noreferrer">
-                  <Image style={{ width: 45, height: 45, cursor: 'pointer' }} src={github} />
+
+                <Anchor
+                  href="https://github.com/angeles3rdy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    borderRadius: '50%',
+                    padding: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                    e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <Image
+                    style={{
+                      width: 55,
+                      height: 55,
+                      cursor: 'pointer',
+                      filter: 'brightness(0.9) contrast(1.2)'
+                    }}
+                    src={github}
+                  />
                 </Anchor>
-                <Anchor href="https://www.linkedin.com/in/angeles-iii-tablante-4b31b8276/" target="_blank" rel="noopener noreferrer">
-                  <Image style={{ width: 45, height: 45, cursor: 'pointer' }} src={linkedin} />
+
+                <Anchor
+                  href="https://www.linkedin.com/in/angeles-iii-tablante-4b31b8276/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                    borderRadius: '50%',
+                    padding: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.1)';
+                    e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 119, 181, 0.5)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.boxShadow = 'none';
+                  }}
+                >
+                  <Image
+                    style={{
+                      width: 55,
+                      height: 55,
+                      cursor: 'pointer',
+                      filter: 'brightness(0.9) contrast(1.2)'
+                    }}
+                    src={linkedin}
+                  />
                 </Anchor>
               </Group>
             </Stack>
@@ -393,6 +634,9 @@ function App() {
       {emailMe &&
         <EmailModal opened={emailMe} close={() => setEmailMe(false)} />
       }
+
+      <Divider mt={12} color='#737373' />
+      <Text style={{ fontFamily: "Albert Sans", color: "white" }}>© 2024 Angeles III | All rights reserved</Text>
     </div>
   )
 }
