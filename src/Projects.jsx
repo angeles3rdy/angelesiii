@@ -1,15 +1,20 @@
-import { Box, Button, Center, Divider, Grid, Group, Image, Paper, Stack, Text, Timeline } from '@mantine/core'
+import { Box, Button, Tabs, Text } from '@mantine/core'
 import React from 'react'
 import Cards from './components/Cards';
-import { FaGears, FaLaptopCode } from 'react-icons/fa6';
+import { FaGears, FaLaptopCode, FaPalette } from 'react-icons/fa6';
 import pawstit from "../public/prj_pawstit.jpg"
 import auction from "../public/auction.jpg"
 import auction1 from "../public/auction1.jpg"
 import ae from "../public/ae.jpg"
+import phone from "../public/PHONES2.svg"
+import phone2 from "../public/PHONES.svg"
+import register from "../public/register.svg"
 import '@mantine/carousel/styles.css';
 import { useNavigate } from 'react-router-dom';
+import DesignProjectsCards from './components/DesignProjectsCards';
+import { FaPallet } from 'react-icons/fa';
 
-const projects = [
+const softwareProjects = [
   {
     id: 1,
     name: "Pawst IT: A Micro Social Media Pet Application with Integration of Gemini AI",
@@ -21,7 +26,6 @@ const projects = [
     techUsed: "ReactJS, React Native, Firebase, Gemini AI, Expo, RNMapbox (Mobile), Leaflet (Web)",
     type: "Academic",
     technologies: ["react", "javascript", "firebase", "expo"]
-
   },
   {
     id: 2,
@@ -32,7 +36,6 @@ const projects = [
     techUsed: "C#, MySQL",
     type: "Academic",
     technologies: ["csharp", "mysql"]
-
   },
   {
     id: 3,
@@ -43,7 +46,6 @@ const projects = [
     techUsed: "C#, MySQL",
     type: "Academic",
     technologies: ["csharp", "mysql"]
-
   },
   {
     id: 4,
@@ -54,13 +56,23 @@ const projects = [
     techUsed: "Java, MySQL",
     type: "Academic",
     technologies: ["java", "mysql"]
-
   },
+]
 
+const designProjects = [
+  // Add your design projects here
+  // Example:
+  {
+    id: 1,
+    name: "Login / Register Template",
+    duration: "November 2024",
+    image: [phone2, phone, register],
+    techUsed: "Figma",
+    type: "Hobby",
+  },
 ]
 
 function Projects() {
-
   const navigation = useNavigate();
 
   return (
@@ -73,14 +85,52 @@ function Projects() {
         margin: '0 auto',
         height: '100%'
       }}>
-        <Button onClick={() => navigation(-1)} variant='subtle' color='white'>
-          <Text style={{ fontFamily: "Albert Sans", fontWeight: "bold", textDecorationLine: 'underline' }}>Go Back</Text>
+        <Button
+          onClick={() => navigation(-1)}
+          variant='subtle'
+          color='white'
+          mb="md"
+        >
+          <Text style={{ fontFamily: "Albert Sans", fontWeight: "bold", textDecorationLine: 'underline' }}>
+            Go Back
+          </Text>
         </Button>
-        <Cards
-          icon={<FaLaptopCode color='white' size={'24px'} />}
-          title="Projects"
-          projects={projects}
-        />
+
+        <Tabs defaultValue="software" variant="outline">
+          <Tabs.List>
+            <Tabs.Tab
+              style={{ color: "white" }}
+              value="software"
+              leftSection={<FaLaptopCode size={16} />}
+            >
+              Software Projects
+            </Tabs.Tab>
+            <Tabs.Tab
+              style={{ color: "white" }}
+              value="design"
+              leftSection={<FaPalette size={16} />}
+            >
+              Design Projects
+            </Tabs.Tab>
+          </Tabs.List>
+
+          <Tabs.Panel value="software" pt="xs">
+            <Cards
+              icon={<FaLaptopCode color='white' size={'24px'} />}
+              title="Software Projects"
+              projects={softwareProjects}
+            />
+          </Tabs.Panel>
+
+          <Tabs.Panel value="design" pt="xs">
+            <DesignProjectsCards
+              canView={false}
+              icon={<FaPalette color='white' size={'24px'}/>}
+              title={"Design Projects"}
+              designProjects={designProjects}
+            />
+          </Tabs.Panel>
+        </Tabs>
       </Box>
     </div>
   )
