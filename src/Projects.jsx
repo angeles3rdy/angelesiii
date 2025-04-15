@@ -1,5 +1,5 @@
 import { Box, Button, Tabs, Text } from '@mantine/core'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Cards from './components/Cards';
 import { FaGears, FaLaptopCode, FaPalette } from 'react-icons/fa6';
 import pawstit from "../public/prj_pawstit.jpg"
@@ -60,8 +60,6 @@ const softwareProjects = [
 ]
 
 const designProjects = [
-  // Add your design projects here
-  // Example:
   {
     id: 1,
     name: "Login / Register Template",
@@ -74,6 +72,10 @@ const designProjects = [
 
 function Projects() {
   const navigation = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div style={{
