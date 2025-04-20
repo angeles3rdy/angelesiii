@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react'
 import { IoMdMail, IoMdPerson, IoMdPin } from "react-icons/io";
 import Cards from './components/Cards';
 import { FaGears, FaLaptopCode } from 'react-icons/fa6';
-import Pills from './components/Pills';
 import js from "../public/tech-icons/javascript-color.svg"
 import react from "../public/tech-icons/react-color.svg"
 import node from "../public/tech-icons/nodedotjs-color.svg"
@@ -16,30 +15,28 @@ import expo from "../public/tech-icons/expo-color.svg"
 import fb from "../public/tech-icons/facebook.svg"
 import linkedin from "../public/tech-icons/linkedin.svg"
 import github from "../public/tech-icons/github.svg"
-import pawstit from "../public/prj_pawstit.jpg"
+import figma from "../public/tech-icons/figma.svg"
+import pawstit from "./assets/displays/PROJECT_PAWSTIT.jpg"
 import { FaBook } from 'react-icons/fa';
 import { IoCodeSlash, IoSparkles } from 'react-icons/io5';
-import Recog from './components/Recog';
-import { Carousel } from '@mantine/carousel';
 import '@mantine/carousel/styles.css';
-import classes from "./App.module.css"
-import me1 from "../public/me1.jpg";
-import sittingme from "../public/me_sitting1.jpg";
+import me1 from "../src/assets/displays/ME_1.jpg";
 import { useNavigate } from 'react-router-dom';
 import EmailModal from './components/EmailModal';
 import { useWindowScroll } from '@mantine/hooks';
 import Certifications from './components/Certifications';
 
 const techStack = [
-  { id: 2, name: "React & React Native", icon: react },
   { id: 1, name: "Javascript", icon: js },
+  { id: 2, name: "React & React Native", icon: react },
   { id: 3, name: "NodeJS", icon: node },
   { id: 4, name: "MongoDB", icon: mongo },
   { id: 5, name: "Firebase", icon: firebase },
   { id: 6, name: "MySQL", icon: mysql },
   { id: 7, name: "C-Sharp", icon: csh },
   { id: 8, name: "Java", icon: java },
-  { id: 9, name: "Expo", icon: expo }
+  { id: 9, name: "Expo", icon: expo },
+  { id: 10, name: "Figma", icon: figma },
 ]
 
 const projects = [
@@ -88,24 +85,19 @@ const BackgroundParticles = () => {
 
     let animationParticles = generateParticles();
 
-    // Animate particles with more fluid movement
     const animateParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       animationParticles.forEach((particle, index) => {
-        // Add slight oscillation
         particle.x += particle.speedX + Math.sin(particle.y * 0.01) * 0.2;
         particle.y += particle.speedY + Math.cos(particle.x * 0.01) * 0.2;
 
-        // Wrap around screen edges
         particle.x = (particle.x + canvas.width) % canvas.width;
         particle.y = (particle.y + canvas.height) % canvas.height;
 
-        // Draw particle with subtle glow effect
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
 
-        // Create radial gradient for glow effect
         const gradient = ctx.createRadialGradient(
           particle.x, particle.y, 0,
           particle.x, particle.y, particle.radius * 3
@@ -120,10 +112,8 @@ const BackgroundParticles = () => {
       requestAnimationFrame(animateParticles);
     };
 
-    // Start animation
     const animationFrame = requestAnimationFrame(animateParticles);
 
-    // Cleanup
     return () => {
       cancelAnimationFrame(animationFrame);
       window.removeEventListener('resize', resizeCanvas);

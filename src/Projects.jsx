@@ -2,13 +2,21 @@ import { Box, Button, Tabs, Text } from '@mantine/core'
 import React, { useEffect } from 'react'
 import Cards from './components/Cards';
 import { FaGears, FaLaptopCode, FaPalette } from 'react-icons/fa6';
-import pawstit from "../public/prj_pawstit.jpg"
-import auction from "../public/auction.jpg"
-import auction1 from "../public/auction1.jpg"
-import ae from "../public/ae.jpg"
-import phone from "../public/PHONES2.svg"
-import phone2 from "../public/PHONES.svg"
-import register from "../public/register.svg"
+import pawstit from "../src/assets/displays/PROJECT_PAWSTIT.jpg"
+import auction from "../src/assets/displays/PROJECT_AUCTION.jpg"
+import auction1 from "../src/assets/displays/PROJECT_AUCTION1.jpg"
+import portobooth from "../src/assets/displays/PROJECT_PORTOBOOTH.jpg"
+import ae from "../src/assets/displays/PROJECT_AE.jpg"
+import phone2 from "../src/assets/displays/DESIGN_PHONE_1.png"
+import phone from "../src/assets/displays/DESIGN_PHONE_2.png"
+import register from "../src/assets/displays/DESIGN_PHONE_3.png"
+import buildResume1 from "../src/assets/displays/DESIGN_RESUME_1.png"
+import buildResume2 from "../src/assets/displays/DESIGN_RESUME_2.png"
+import buildResume3 from "../src/assets/displays/DESIGN_RESUME_3.png"
+import cookBook1 from "../src/assets/displays/DESIGN_COOKBOOK_1.png"
+import cookBook2 from "../src/assets/displays/DESIGN_COOKBOOK_2.png"
+import cookBook3 from "../src/assets/displays/DESIGN_COOKBOOK_3.png"
+
 import '@mantine/carousel/styles.css';
 import { useNavigate } from 'react-router-dom';
 import DesignProjectsCards from './components/DesignProjectsCards';
@@ -16,7 +24,17 @@ import { FaPallet } from 'react-icons/fa';
 
 const softwareProjects = [
   {
-    id: 1,
+    name: "Porto-Booth: A Web-Based Photo Booth Application",
+    duration: "February 2025",
+    isDesktop: true,
+    image: portobooth,
+    techUsed: "ReactJS",
+    type: "Hobby",
+    technologies: ["react", "javascript"],
+    url: "https://porto-booth.vercel.app/",
+
+  },
+  {
     name: "Pawst IT: A Micro Social Media Pet Application with Integration of Gemini AI",
     duration: "March 2024 - November 2024",
     isMobile: true,
@@ -28,7 +46,6 @@ const softwareProjects = [
     technologies: ["react", "javascript", "firebase", "expo"]
   },
   {
-    id: 2,
     name: "Windows Form Auction System v2",
     duration: "June 2024",
     isDesktop: true,
@@ -38,7 +55,6 @@ const softwareProjects = [
     technologies: ["csharp", "mysql"]
   },
   {
-    id: 3,
     name: "Windows Form Auction System v1",
     duration: "January 2024",
     isDesktop: true,
@@ -48,7 +64,6 @@ const softwareProjects = [
     technologies: ["csharp", "mysql"]
   },
   {
-    id: 4,
     name: "AE System: A Console Based Inventory Control System with Expiration Date Calculator and Critical Level Indicator",
     duration: "January 2022",
     isDesktop: true,
@@ -61,10 +76,23 @@ const softwareProjects = [
 
 const designProjects = [
   {
-    id: 1,
-    name: "Login / Register Template",
+    name: "Sample App",
     duration: "November 2024",
     image: [phone2, phone, register],
+    techUsed: "Figma",
+    type: "Hobby",
+  },
+  {
+    name: "Recipe Generator",
+    duration: "December 2024",
+    image: [cookBook1, cookBook2, cookBook3],
+    techUsed: "Figma",
+    type: "Hobby",
+  },
+  {
+    name: "Resume Builder",
+    duration: "December 2024",
+    image: [buildResume1, buildResume2, buildResume3],
     techUsed: "Figma",
     type: "Hobby",
   },
