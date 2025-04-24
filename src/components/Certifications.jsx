@@ -5,34 +5,41 @@ import { IoSparkles } from 'react-icons/io5';
 const certificatesData = [
   {
     id: 0,
+    title: "Java Programming NCIII",
+    issuer: "TESDA",
+    date: "2024",
+    description: "A national certification from TESDA demonstrating proficiency in Java programming, including object-oriented design and database integration."
+  },
+  {
+    id: 1,
     title: "Certificate of Achievement",
     issuer: "S2S Academy - Accenture",
     date: "2024",
     description: "Successfully completed the Skills to Succeed Academy program, showcasing dedication to enhancing job-seeking skills and career readiness",
   },
   {
-    id: 1,
+    id: 2,
     title: "Codefest: Tagisan ng Talino",
     issuer: "STI College - Caloocan",
     date: "2023",
     description: "is an exciting competition that challenges participants to showcase their coding skills, problem-solving abilities, and teamwork in a battle of intellect and innovation",
   },
   {
-    id: 2,
+    id: 3,
     title: "Outstanding Achievement Award",
     issuer: "STI College - Caloocan",
     date: "2023",
     description: "Recognized as the Top 1 Awardee in Object-Oriented Programming for exemplary performance, outstanding dedication, and mastery of advanced programming concepts."
   },
   {
-    id: 3,
+    id: 4,
     title: "Course Completion: Java Foundations",
     issuer: "STI College - Caloocan",
     date: "2022",
     description: "Awarded for successfully completing the Java Foundations course, demonstrating a solid understanding of core programming concepts and practices."
   },
   {
-    id: 3,
+    id: 5,
     title: "Course Completion: System Administration",
     issuer: "STI College - Caloocan",
     date: "2022",

@@ -438,7 +438,7 @@ function App() {
                 <Certifications height={300} /> {/* Reduced height prop */}
               </Paper>
 
-              <Paper
+              {/* <Paper
                 style={{
                   backgroundColor: 'transparent',
                   border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -471,138 +471,139 @@ function App() {
                   </Text>
                 </Group>
 
-              </Paper>
-            </Grid.Col>
-          </Grid>
-          <Box
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: '32px',
-              padding: '24px',
-              borderRadius: '16px',
-              border: '1px solid rgba(115, 115, 115, 0.3)',
-              // backgroundColor: 'rgba(115, 115, 115, 0.1)',
-              backdropFilter: 'blur(10px)',
-              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-              transition: 'all 0.3s ease'
-            }}
-          >
-            <Stack align="center" gap="lg">
-              <Text
+              </Paper> */}
+              <Box
                 style={{
-                  textAlign: 'center',
-                  fontFamily: "Albert Sans",
-                  color: "white",
-                  fontSize: '24px',
-                  fontWeight: 'bold',
-                  letterSpacing: '1px',
-                  textShadow: '2px 2px 4px rgba(0,0,0,0.2)'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  // marginTop: '32px',
+                  padding: '24px',
+                  borderRadius: '16px',
+                  border: '1px solid rgba(115, 115, 115, 0.3)',
+                  // backgroundColor: 'rgba(115, 115, 115, 0.1)',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.3s ease'
                 }}
               >
-                Connect With Me
-              </Text>
-
-              <Group gap="xl">
-                <Anchor
-                  href="https://www.facebook.com/terdiiiii/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                    borderRadius: '50%',
-                    padding: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.1)';
-                    e.currentTarget.style.boxShadow = '0 0 15px rgba(59, 89, 152, 0.5)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <Image
+                <Stack align="center" gap="lg">
+                  <Text
                     style={{
-                      width: 55,
-                      height: 55,
-                      cursor: 'pointer',
-                      filter: 'brightness(0.9) contrast(1.2)'
+                      textAlign: 'center',
+                      fontFamily: "Albert Sans",
+                      color: "white",
+                      fontSize: '24px',
+                      fontWeight: 'bold',
+                      letterSpacing: '1px',
+                      textShadow: '2px 2px 4px rgba(0,0,0,0.2)'
                     }}
-                    src={fb}
-                  />
-                </Anchor>
+                  >
+                    Connect With Me
+                  </Text>
 
-                <Anchor
-                  href="https://github.com/angeles3rdy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                    borderRadius: '50%',
-                    padding: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.1)';
-                    e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <Image
-                    style={{
-                      width: 55,
-                      height: 55,
-                      cursor: 'pointer',
-                      filter: 'brightness(0.9) contrast(1.2)'
-                    }}
-                    src={github}
-                  />
-                </Anchor>
+                  <Group gap="xl">
+                    <Anchor
+                      href="https://www.facebook.com/terdiiiii/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                        borderRadius: '50%',
+                        padding: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.1)';
+                        e.currentTarget.style.boxShadow = '0 0 15px rgba(59, 89, 152, 0.5)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      <Image
+                        style={{
+                          width: 55,
+                          height: 55,
+                          cursor: 'pointer',
+                          filter: 'brightness(0.9) contrast(1.2)'
+                        }}
+                        src={fb}
+                      />
+                    </Anchor>
 
-                <Anchor
-                  href="https://www.linkedin.com/in/angeles-iii-tablante-4b31b8276/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                    borderRadius: '50%',
-                    padding: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.1)';
-                    e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 119, 181, 0.5)';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                    e.currentTarget.style.boxShadow = 'none';
-                  }}
-                >
-                  <Image
-                    style={{
-                      width: 55,
-                      height: 55,
-                      cursor: 'pointer',
-                      filter: 'brightness(0.9) contrast(1.2)'
-                    }}
-                    src={linkedin}
-                  />
-                </Anchor>
-              </Group>
-            </Stack>
-          </Box>
+                    <Anchor
+                      href="https://github.com/angeles3rdy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                        borderRadius: '50%',
+                        padding: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.1)';
+                        e.currentTarget.style.boxShadow = '0 0 15px rgba(255, 255, 255, 0.5)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      <Image
+                        style={{
+                          width: 55,
+                          height: 55,
+                          cursor: 'pointer',
+                          filter: 'brightness(0.9) contrast(1.2)'
+                        }}
+                        src={github}
+                      />
+                    </Anchor>
+
+                    <Anchor
+                      href="https://www.linkedin.com/in/angeles-iii-tablante-4b31b8276/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                        borderRadius: '50%',
+                        padding: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                      }}
+                      onMouseOver={(e) => {
+                        e.currentTarget.style.transform = 'scale(1.1)';
+                        e.currentTarget.style.boxShadow = '0 0 15px rgba(0, 119, 181, 0.5)';
+                      }}
+                      onMouseOut={(e) => {
+                        e.currentTarget.style.transform = 'scale(1)';
+                        e.currentTarget.style.boxShadow = 'none';
+                      }}
+                    >
+                      <Image
+                        style={{
+                          width: 55,
+                          height: 55,
+                          cursor: 'pointer',
+                          filter: 'brightness(0.9) contrast(1.2)'
+                        }}
+                        src={linkedin}
+                      />
+                    </Anchor>
+                  </Group>
+                </Stack>
+              </Box>
+            </Grid.Col>
+          </Grid>
+
 
           <Affix position={{ bottom: 20, right: 20 }}>
             <Transition transition="slide-up" mounted={scroll.y > 0}>
