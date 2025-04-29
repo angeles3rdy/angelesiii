@@ -222,7 +222,7 @@ function App() {
               fontSize: '24px',
               letterSpacing: '1px'
             }}>
-              Mobile / Backend / Database / Design
+              Mobile / Web / Database / Design / Backend
             </Text>
 
             <Center mt={32}>
@@ -265,8 +265,8 @@ function App() {
           <Cards
             icon={<IoMdPerson color='white' size={'24px'} />}
             title="About"
-            text="I'm a mobile developer based in the Philippines. I have experience on building cross-platform applications, websites, and have interest on managing databases, designing UI, and also have skills on backend development."
-            text2="During my academic years, I have started from assisting in development and grew to being the lead developer, effectively leading to us to succeed our various academe projects."
+            text="I'm a software developer based in the Philippines. I have experience on building cross-platform applications, websites, and have interest on managing databases, designing UI, and also have skills on backend development."
+            text2="During my academic years, I have started from assisting in development and grew to being the lead developer, effectively leading to us to succeed our various academic projects."
           />
 
           <Cards
